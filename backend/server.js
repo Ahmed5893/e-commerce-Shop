@@ -6,6 +6,7 @@ const productRoutes = require("./routes/productRoutes");
 const userRoutes = require("./routes/userRoutes");
 const orderRoutes = require("./routes/orderRoutes");
 const uploadRoutes = require("./routes/uploadRoutes");
+const { notFound, errorHandler }= require ('./middleware/errorMiddleware');
 const path = require("path");
 const morgan = require("morgan");
 
@@ -44,6 +45,8 @@ if (process.env.NODE_ENV === 'production') {
   })
 }
 
+app.use(notFound)
+app.use(errorHandler)
 
 
 const PORT = process.env.PORT || 5000
